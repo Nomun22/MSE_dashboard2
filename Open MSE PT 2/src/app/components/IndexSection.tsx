@@ -197,6 +197,7 @@ export function IndexSection({ language }: IndexSectionProps) {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
+export default IndexSection;

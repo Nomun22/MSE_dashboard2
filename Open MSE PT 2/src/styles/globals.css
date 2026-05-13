@@ -1,0 +1,13 @@
+/* Base screen background - Deep blue like TDB Securities */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #004187;
+  min-height: 100vh;
+}
+
+/* Remove default white backgrounds from root elements */
+#root,
+#app {
+  background: transparent;
+}

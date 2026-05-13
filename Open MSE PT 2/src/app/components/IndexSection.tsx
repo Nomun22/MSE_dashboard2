@@ -167,6 +167,7 @@ export function IndexSection({ language }: IndexSectionProps) {
                 <text x="330" y="198" className="text-xs fill-muted-foreground">2025</text>
               </svg>
             </div>
+          </div>
 
           {/* Right: Constituents Table */}
           <div className="overflow-hidden rounded-lg border border-border">
@@ -197,7 +198,8 @@ export function IndexSection({ language }: IndexSectionProps) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
+
 export default IndexSection;

@@ -1,6 +1,0 @@
-/* MSE Dashboard - Global overrides */
-
-/* Prevent text overflow in filter/tab buttons */
-button {
-  white-space: nowrap;
-}

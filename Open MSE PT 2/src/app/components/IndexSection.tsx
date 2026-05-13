@@ -66,6 +66,28 @@ const indexData = {
   },
 };
 
+// Different data points for each time period and index type
+const chartData = {
+  top20: {
+    day: [50820, 50750, 50680, 50730, 50650, 50710, 50690, 50672],
+    week: [51200, 51050, 50900, 50750, 50672],
+    month: [52100, 51500, 51200, 50672],
+    year: [48500, 49200, 50100, 51300, 51800, 50672],
+  },
+  mseA: {
+    day: [2860, 2855, 2850, 2852, 2848, 2850, 2849, 2847],
+    week: [2890, 2875, 2865, 2855, 2847],
+    month: [2920, 2900, 2880, 2847],
+    year: [2750, 2800, 2850, 2900, 2920, 2847],
+  },
+  mseB: {
+    day: [1528, 1530, 1532, 1531, 1533, 1535, 1536, 1534],
+    week: [1520, 1525, 1528, 1532, 1534],
+    month: [1500, 1515, 1525, 1534],
+    year: [1450, 1480, 1500, 1520, 1530, 1534],
+  },
+};
+
 const timeLabels = {
   day: { en: ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"], mn: ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"] },
   week: { en: ["Mon", "Tue", "Wed", "Thu", "Fri"], mn: ["Да", "Мя", "Лх", "Пү", "Ба"] },
@@ -80,6 +102,27 @@ export function IndexSection({ language }: IndexSectionProps) {
   const currentIndex = indexData[activeIndex];
   const isPositive = currentIndex.changePercent >= 0;
   const labels = timeLabels[timePeriod][language];
+  const dataPoints = chartData[activeIndex][timePeriod];
+
+  // Calculate chart scaling
+  const maxValue = Math.max(...dataPoints);
+  const minValue = Math.min(...dataPoints);
+  const valueRange = maxValue - minValue;
+  const chartHeight = 150;
+  const chartWidth = 330;
+  const padding = 20;
+
+  // Generate Y-axis labels (5 evenly spaced values)
+  const yAxisLabels = Array.from({ length: 5 }, (_, i) => {
+    return Math.round(maxValue - (valueRange * i / 4));
+  });
+
+  // Convert data points to SVG coordinates
+  const points = dataPoints.map((value, index) => {
+    const x = 50 + (index * (chartWidth / (dataPoints.length - 1)));
+    const y = padding + ((maxValue - value) / valueRange * chartHeight);
+    return `${x},${y}`;
+  }).join(' ');
 
   return (
     <section className="space-y-6">
@@ -189,37 +232,74 @@ export function IndexSection({ language }: IndexSectionProps) {
               </button>
             </div>
 
-            {/* Chart Placeholder */}
+            {/* Interactive Chart */}
             <div className="h-64 w-full rounded border border-border bg-gray-50">
               <svg className="h-full w-full p-4" viewBox="0 0 400 200">
-                {/* Y-axis labels */}
-                <text x="5" y="20" className="text-xs fill-muted-foreground">60,000</text>
-                <text x="5" y="70" className="text-xs fill-muted-foreground">47,500</text>
-                <text x="5" y="120" className="text-xs fill-muted-foreground">35,000</text>
-                <text x="5" y="170" className="text-xs fill-muted-foreground">22,500</text>
-                <text x="5" y="195" className="text-xs fill-muted-foreground">10,000</text>
+                {/* Y-axis labels - dynamic based on data */}
+                {yAxisLabels.map((label, i) => (
+                  <text key={i} x="5" y={padding + (i * (chartHeight / 4))} className="text-xs fill-muted-foreground">
+                    {label.toLocaleString()}
+                  </text>
+                ))}
 
                 {/* Grid lines */}
-                <line x1="50" y1="20" x2="380" y2="20" stroke="#e5e7eb" strokeWidth="1" />
-                <line x1="50" y1="70" x2="380" y2="70" stroke="#e5e7eb" strokeWidth="1" />
-                <line x1="50" y1="120" x2="380" y2="120" stroke="#e5e7eb" strokeWidth="1" />
-                <line x1="50" y1="170" x2="380" y2="170" stroke="#e5e7eb" strokeWidth="1" />
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <line
+                    key={i}
+                    x1="50"
+                    y1={padding + (i * (chartHeight / 4))}
+                    x2="380"
+                    y2={padding + (i * (chartHeight / 4))}
+                    stroke="#e5e7eb"
+                    strokeWidth="1"
+                  />
+                ))}
 
-                {/* Sample chart line */}
+                {/* Data line with animation */}
                 <polyline
-                  points="50,180 80,170 110,150 140,140 170,80 200,90 230,100 260,95 290,110 320,105 350,115 380,120"
+                  points={points}
                   fill="none"
                   stroke="#004187"
                   strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="transition-all duration-500 ease-in-out"
                 />
+
+                {/* Data points (circles) */}
+                {dataPoints.map((value, index) => {
+                  const x = 50 + (index * (chartWidth / (dataPoints.length - 1)));
+                  const y = padding + ((maxValue - value) / valueRange * chartHeight);
+                  return (
+                    <g key={index}>
+                      <circle
+                        cx={x}
+                        cy={y}
+                        r="4"
+                        fill="#004187"
+                        className="transition-all duration-500 ease-in-out"
+                      />
+                      <circle
+                        cx={x}
+                        cy={y}
+                        r="8"
+                        fill="transparent"
+                        className="hover:fill-blue-100 cursor-pointer transition-all"
+                      >
+                        <title>{value.toLocaleString()}</title>
+                      </circle>
+                    </g>
+                  );
+                })}
 
                 {/* X-axis labels - dynamic based on time period */}
                 {labels.map((label, i) => (
                   <text
                     key={i}
-                    x={50 + (i * (330 / (labels.length - 1)))}
-                    y="198"
+                    x={50 + (i * (chartWidth / (labels.length - 1)))}
+                    y="195"
                     className="text-xs fill-muted-foreground"
+                    textAnchor="middle"
                   >
                     {label}
                   </text>

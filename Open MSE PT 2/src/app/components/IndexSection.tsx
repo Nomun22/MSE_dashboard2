@@ -168,17 +168,6 @@ export function IndexSection({ language }: IndexSectionProps) {
               </svg>
             </div>
 
-            {/* Link */}
-            <a
-              href="https://www.mse.mn/todays-trade"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-sm text-primary hover:underline"
-            >
-              {language === "en" ? "View details" : "Дэлгэрэнгүй"}
-              <span className="ml-1">→</span>
-            </a>
-          </div>
 
           {/* Right: Constituents Table */}
           <div className="overflow-hidden rounded-lg border border-border">

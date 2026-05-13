@@ -5,7 +5,6 @@
   --mse-dark-gray: #333333;
 }
 
-/* Fix overlapping sections */
 * {
   box-sizing: border-box;
 }
@@ -13,48 +12,6 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--mse-light-gray);
+  background-color: #ffffff;
   overflow-x: hidden;
-}
-
-/* Add spacing between sections */
-section, .section, [class*="Section"] {
-  margin-bottom: 32px;
-  padding: 20px;
-  clear: both;
-}
-
-/* Add MSE blue to headers */
-h1, h2, h3, .header, [class*="Header"] {
-  color: var(--mse-blue) !important;
-}
-
-/* Style tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-th {
-  background-color: var(--mse-blue);
-  color: white;
-  padding: 12px;
-  text-align: left;
-}
-
-td {
-  padding: 12px;
-  border-bottom: 1px solid #E5E5E5;
-}
-
-/* Fix card overlapping */
-[class*="Card"], .card {
-  background: white;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }

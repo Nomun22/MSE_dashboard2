@@ -1,41 +1,6 @@
-/* Fix text overlapping in filter tabs - STRONGER selectors */
-.text-sm,
-.text-xs,
-button.text-sm,
-button.text-xs {
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  padding: 6px 12px !important;
-  display: inline-block !important;
-}
+/* MSE Dashboard - Global overrides */
 
-/* Add spacing between ALL buttons */
+/* Prevent text overflow in filter/tab buttons */
 button {
-  margin-right: 12px !important;
-  margin-bottom: 8px !important;
-  min-width: fit-content !important;
-}
-
-/* Prevent filter text overlap - stronger */
-div[class*="flex"] > *,
-div[class*="flex"] > button {
-  flex-shrink: 0 !important;
-  margin-right: 8px !important;
-}
-
-/* Fix container to allow wrapping if needed */
-div[class*="flex"][class*="gap"] {
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-}
-
-/* Specific fix for Mongolian text buttons */
-button[class*="rounded"],
-button[class*="bg-"],
-button[class*="border"] {
-  padding: 8px 16px !important;
-  white-space: nowrap !important;
-  overflow: visible !important;
-  min-width: max-content !important;
+  white-space: nowrap;
 }

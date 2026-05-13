@@ -7,6 +7,7 @@ interface IndexSectionProps {
 }
 
 type IndexType = "top20" | "mseA" | "mseB";
+type TimePeriod = "day" | "week" | "month" | "year";
 
 const indexData = {
   top20: {
@@ -65,11 +66,20 @@ const indexData = {
   },
 };
 
+const timeLabels = {
+  day: { en: ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"], mn: ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"] },
+  week: { en: ["Mon", "Tue", "Wed", "Thu", "Fri"], mn: ["Да", "Мя", "Лх", "Пү", "Ба"] },
+  month: { en: ["Week 1", "Week 2", "Week 3", "Week 4"], mn: ["1-р 7х", "2-р 7х", "3-р 7х", "4-р 7х"] },
+  year: { en: ["Jan", "Mar", "May", "Jul", "Sep", "Nov"], mn: ["1-р", "3-р", "5-р", "7-р", "9-р", "11-р"] },
+};
+
 export function IndexSection({ language }: IndexSectionProps) {
   const [activeIndex, setActiveIndex] = useState<IndexType>("top20");
+  const [timePeriod, setTimePeriod] = useState<TimePeriod>("year");
 
   const currentIndex = indexData[activeIndex];
   const isPositive = currentIndex.changePercent >= 0;
+  const labels = timeLabels[timePeriod][language];
 
   return (
     <section className="space-y-6">
@@ -135,6 +145,50 @@ export function IndexSection({ language }: IndexSectionProps) {
               </div>
             </div>
 
+            {/* Time Period Filters */}
+            <div className="flex gap-2 border-b border-border pb-2">
+              <button
+                onClick={() => setTimePeriod("day")}
+                className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
+                  timePeriod === "day"
+                    ? "bg-primary text-white"
+                    : "text-muted-foreground hover:bg-gray-100"
+                }`}
+              >
+                {language === "en" ? "Day" : "Өдөр"}
+              </button>
+              <button
+                onClick={() => setTimePeriod("week")}
+                className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
+                  timePeriod === "week"
+                    ? "bg-primary text-white"
+                    : "text-muted-foreground hover:bg-gray-100"
+                }`}
+              >
+                {language === "en" ? "Week" : "7 хоног"}
+              </button>
+              <button
+                onClick={() => setTimePeriod("month")}
+                className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
+                  timePeriod === "month"
+                    ? "bg-primary text-white"
+                    : "text-muted-foreground hover:bg-gray-100"
+                }`}
+              >
+                {language === "en" ? "Month" : "Сар"}
+              </button>
+              <button
+                onClick={() => setTimePeriod("year")}
+                className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
+                  timePeriod === "year"
+                    ? "bg-primary text-white"
+                    : "text-muted-foreground hover:bg-gray-100"
+                }`}
+              >
+                {language === "en" ? "Year" : "Жил"}
+              </button>
+            </div>
+
             {/* Chart Placeholder */}
             <div className="h-64 w-full rounded border border-border bg-gray-50">
               <svg className="h-full w-full p-4" viewBox="0 0 400 200">
@@ -159,12 +213,17 @@ export function IndexSection({ language }: IndexSectionProps) {
                   strokeWidth="2"
                 />
 
-                {/* X-axis labels */}
-                <text x="50" y="198" className="text-xs fill-muted-foreground">2017</text>
-                <text x="120" y="198" className="text-xs fill-muted-foreground">2019</text>
-                <text x="190" y="198" className="text-xs fill-muted-foreground">2021</text>
-                <text x="260" y="198" className="text-xs fill-muted-foreground">2023</text>
-                <text x="330" y="198" className="text-xs fill-muted-foreground">2025</text>
+                {/* X-axis labels - dynamic based on time period */}
+                {labels.map((label, i) => (
+                  <text
+                    key={i}
+                    x={50 + (i * (330 / (labels.length - 1)))}
+                    y="198"
+                    className="text-xs fill-muted-foreground"
+                  >
+                    {label}
+                  </text>
+                ))}
               </svg>
             </div>
           </div>

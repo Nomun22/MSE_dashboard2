@@ -68,8 +68,8 @@ export function OtherSecurities({ language, onRowClick }: OtherSecuritiesProps) 
 
         <TabsContent value="debt" className="mt-6">
           <Card>
-            <CardHeader>
-              <div className="flex items-center gap-3">
+            <CardHeader className="space-y-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <div className="relative flex-1">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -80,9 +80,14 @@ export function OtherSecurities({ language, onRowClick }: OtherSecuritiesProps) 
                     className="pl-9"
                   />
                 </div>
-                <Button variant="outline" size="sm" onClick={() => setDebtSearch("")}>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => setDebtSearch("")} 
+                  className="flex items-center gap-2 whitespace-nowrap"
+                >
                   <RotateCcw className="h-4 w-4" />
-                  {t(language, "listedCompanies.resetFilters")}
+                  <span>{t(language, "listedCompanies.resetFilters")}</span>
                 </Button>
               </div>
             </CardHeader>
@@ -91,10 +96,10 @@ export function OtherSecurities({ language, onRowClick }: OtherSecuritiesProps) 
                 <table className="w-full">
                   <thead className="border-b border-border">
                     <tr className="text-left text-sm text-muted-foreground">
-                      <th className="w-20 pb-3 font-medium">{t(language, "listedCompanies.no")}</th>
-                      <th className="w-40 pb-3 font-medium">{t(language, "listedCompanies.symbol")}</th>
-                      <th className="pb-3 font-medium">{t(language, "otherSecurities.securityName")}</th>
-                      <th className="w-40 pb-3 font-medium">{t(language, "otherSecurities.maturityDate")}</th>
+                      <th className="w-16 pb-3 font-medium">{t(language, "listedCompanies.no")}</th>
+                      <th className="min-w-[120px] pb-3 font-medium">{t(language, "listedCompanies.symbol")}</th>
+                      <th className="min-w-[200px] pb-3 font-medium">{t(language, "otherSecurities.securityName")}</th>
+                      <th className="min-w-[120px] pb-3 font-medium">{t(language, "otherSecurities.maturityDate")}</th>
                     </tr>
                   </thead>
                   <tbody className="text-sm">
@@ -119,8 +124,8 @@ export function OtherSecurities({ language, onRowClick }: OtherSecuritiesProps) 
 
         <TabsContent value="abs" className="mt-6">
           <Card>
-            <CardHeader>
-              <div className="flex items-center gap-3">
+            <CardHeader className="space-y-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <div className="relative flex-1">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -131,9 +136,14 @@ export function OtherSecurities({ language, onRowClick }: OtherSecuritiesProps) 
                     className="pl-9"
                   />
                 </div>
-                <Button variant="outline" size="sm" onClick={() => setAbsSearch("")}>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => setAbsSearch("")} 
+                  className="flex items-center gap-2 whitespace-nowrap"
+                >
                   <RotateCcw className="h-4 w-4" />
-                  {t(language, "listedCompanies.resetFilters")}
+                  <span>{t(language, "listedCompanies.resetFilters")}</span>
                 </Button>
               </div>
             </CardHeader>
@@ -142,10 +152,10 @@ export function OtherSecurities({ language, onRowClick }: OtherSecuritiesProps) 
                 <table className="w-full">
                   <thead className="border-b border-border">
                     <tr className="text-left text-sm text-muted-foreground">
-                      <th className="w-20 pb-3 font-medium">{t(language, "listedCompanies.no")}</th>
-                      <th className="w-40 pb-3 font-medium">{t(language, "listedCompanies.symbol")}</th>
-                      <th className="pb-3 font-medium">{t(language, "otherSecurities.securityName")}</th>
-                      <th className="w-40 pb-3 font-medium">{t(language, "otherSecurities.maturityDate")}</th>
+                      <th className="w-16 pb-3 font-medium">{t(language, "listedCompanies.no")}</th>
+                      <th className="min-w-[120px] pb-3 font-medium">{t(language, "listedCompanies.symbol")}</th>
+                      <th className="min-w-[200px] pb-3 font-medium">{t(language, "otherSecurities.securityName")}</th>
+                      <th className="min-w-[120px] pb-3 font-medium">{t(language, "otherSecurities.maturityDate")}</th>
                     </tr>
                   </thead>
                   <tbody className="text-sm">
@@ -173,8 +183,8 @@ export function OtherSecurities({ language, onRowClick }: OtherSecuritiesProps) 
 
         <TabsContent value="funds" className="mt-6">
           <Card>
-            <CardHeader>
-              <div className="flex items-center gap-3">
+            <CardHeader className="space-y-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <div className="relative flex-1">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -185,9 +195,14 @@ export function OtherSecurities({ language, onRowClick }: OtherSecuritiesProps) 
                     className="pl-9"
                   />
                 </div>
-                <Button variant="outline" size="sm" onClick={() => setFundsSearch("")}>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => setFundsSearch("")} 
+                  className="flex items-center gap-2 whitespace-nowrap"
+                >
                   <RotateCcw className="h-4 w-4" />
-                  {t(language, "listedCompanies.resetFilters")}
+                  <span>{t(language, "listedCompanies.resetFilters")}</span>
                 </Button>
               </div>
             </CardHeader>
@@ -196,9 +211,9 @@ export function OtherSecurities({ language, onRowClick }: OtherSecuritiesProps) 
                 <table className="w-full">
                   <thead className="border-b border-border">
                     <tr className="text-left text-sm text-muted-foreground">
-                      <th className="w-20 pb-3 font-medium">{t(language, "listedCompanies.no")}</th>
-                      <th className="w-40 pb-3 font-medium">{t(language, "listedCompanies.symbol")}</th>
-                      <th className="pb-3 font-medium">{t(language, "otherSecurities.fundName")}</th>
+                      <th className="w-16 pb-3 font-medium">{t(language, "listedCompanies.no")}</th>
+                      <th className="min-w-[120px] pb-3 font-medium">{t(language, "listedCompanies.symbol")}</th>
+                      <th className="min-w-[200px] pb-3 font-medium">{t(language, "otherSecurities.fundName")}</th>
                     </tr>
                   </thead>
                   <tbody className="text-sm">

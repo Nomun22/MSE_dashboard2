@@ -33,7 +33,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Header
         language={language}
         onLanguageToggle={handleLanguageToggle}
@@ -41,7 +41,7 @@ export default function App() {
         onSearchChange={setGlobalSearchQuery}
       />
 
-      <main className="container mx-auto space-y-16 px-6 py-8">
+      <main className="container mx-auto space-y-6 px-4 py-6">
         <MarketOverview language={language} />
 
         <IndexSection language={language} />

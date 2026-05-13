@@ -1,0 +1,20 @@
+/* Fix text overlapping in filter tabs */
+.text-sm,
+.text-xs {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 4px 8px;
+}
+
+/* Add spacing between tab buttons */
+button[class*="text-sm"],
+button[class*="px-"] {
+  margin-right: 8px !important;
+  min-width: fit-content;
+}
+
+/* Prevent filter text overlap */
+div[class*="flex"] > * {
+  flex-shrink: 0;
+}

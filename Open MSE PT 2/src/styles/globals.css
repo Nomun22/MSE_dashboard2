@@ -1,53 +1,93 @@
-/* Base screen background - Deep blue like TDB Securities */
+/* Base screen background - Deep blue */
 body {
   margin: 0;
   padding: 0;
   background-color: #004187;
   min-height: 100vh;
+  color: #ffffff;
 }
 
-/* Remove default white backgrounds from root elements */
+/* Remove default backgrounds from root elements */
 #root,
 #app {
   background: transparent;
 }
 
-/* White content containers with rounded corners and shadows */
+/* Container should be transparent to show blue background */
 .container {
   background: transparent !important;
 }
 
-/* Style all section containers to be white cards */
+/* Content cards - Darker blue than background */
 main > section,
 main > div:not(.container) {
-  background-color: #ffffff;
+  background-color: #003166;
   border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
 }
 
-/* Header should also be a white card */
+/* Header - Darker blue card */
 header {
-  background-color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #003166;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
 }
 
-/* Footer styling */
+/* Footer - Darker blue */
 footer {
-  background-color: #ffffff;
-  border-top: 1px solid #e5e7eb;
+  background-color: #003166;
+  border-top: 1px solid #004187;
+  color: #ffffff;
 }
 
-/* Tables should have clean white backgrounds */
+/* Tables - Darker blue background with white text */
 table {
-  background-color: #ffffff;
+  background-color: #003166;
+  color: #ffffff;
 }
 
-/* Card components */
+thead {
+  background-color: #002952;
+  color: #ffffff;
+}
+
+tbody tr:hover {
+  background-color: #004187;
+}
+
+/* Card components - Darker blue */
 .card,
 [class*="Card"],
 [class*="card"] {
-  background-color: #ffffff;
+  background-color: #003166;
   border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+/* Make sure all text is white by default */
+h1, h2, h3, h4, h5, h6, p, span, div, td, th {
+  color: inherit;
+}
+
+/* Links should be lighter blue */
+a {
+  color: #60a5fa;
+}
+
+a:hover {
+  color: #93c5fd;
+}
+
+/* Input fields */
+input, select, textarea {
+  background-color: #002952;
+  color: #ffffff;
+  border: 1px solid #004187;
+}
+
+input::placeholder {
+  color: #9ca3af;
 }

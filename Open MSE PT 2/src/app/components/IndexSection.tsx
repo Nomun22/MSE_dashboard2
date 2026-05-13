@@ -168,7 +168,6 @@ export function IndexSection({ language }: IndexSectionProps) {
               </svg>
             </div>
 
-
           {/* Right: Constituents Table */}
           <div className="overflow-hidden rounded-lg border border-border">
             <div className="max-h-96 overflow-y-auto">

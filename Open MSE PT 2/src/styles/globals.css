@@ -1,3 +1,8 @@
+/* =================================================================
+   MSE DASHBOARD - GLOBAL STYLES
+   Deep blue theme with bright white text and prominent table headers
+   ================================================================= */
+
 /* Base screen background - Deep blue */
 body {
   margin: 0;
@@ -7,22 +12,17 @@ body {
   color: #ffffff !important;
 }
 
-/* Remove default backgrounds from root elements */
 #root,
-#app {
-  background: transparent !important;
-}
-
-/* Container should be transparent to show blue background */
+#app,
 .container {
   background: transparent !important;
 }
 
-/* FORCE all text to be white - most important fix */
-* {
-  color: inherit;
-}
+/* =================================================================
+   TEXT VISIBILITY - FORCE ALL TEXT TO BRIGHT WHITE
+   ================================================================= */
 
+/* Base text colors */
 body,
 body *,
 div,
@@ -30,13 +30,46 @@ p,
 span,
 h1, h2, h3, h4, h5, h6,
 label,
-td, th,
+td,
+th,
 li,
 a {
   color: #ffffff !important;
 }
 
-/* Content cards - Darker blue than background */
+/* Ticker symbols - BRIGHT WHITE, BOLD */
+.font-semibold,
+.tracking-wide,
+[class*="ticker"],
+td .font-semibold {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+/* Company names and important text - BRIGHT WHITE */
+.font-medium,
+.text-foreground,
+td.font-medium,
+td .font-medium {
+  color: #ffffff !important;
+}
+
+/* Muted text - LIGHT GRAY (still readable) */
+.text-muted,
+.text-muted-foreground,
+[class*="muted"] {
+  color: #d1d5db !important;
+}
+
+/* Data and numbers - BRIGHT WHITE */
+.tabular-nums {
+  color: #ffffff !important;
+}
+
+/* =================================================================
+   CARDS & SECTIONS - DARKER BLUE BACKGROUND
+   ================================================================= */
+
 main > section,
 main > div:not(.container),
 section {
@@ -46,52 +79,16 @@ section {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* Header - Darker blue card */
 header {
   background-color: #003166 !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Footer - Darker blue */
 footer {
   background-color: #003166 !important;
   border-top: 1px solid #004187;
 }
 
-/* TABLES - Force blue styling on ALL tables */
-table {
-  background-color: #003166 !important;
-  width: 100%;
-  border-collapse: collapse;
-}
-
-thead,
-thead tr,
-thead th {
-  background-color: #002952 !important;
-  color: #ffffff !important;
-  font-weight: 600;
-}
-
-tbody,
-tbody tr,
-tbody td {
-  background-color: #003166 !important;
-  color: #ffffff !important;
-}
-
-tbody tr:hover {
-  background-color: #004187 !important;
-}
-
-th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  color: #ffffff !important;
-}
-
-/* Card components - Darker blue */
 .card,
 [class*="Card"],
 [class*="card"],
@@ -102,7 +99,106 @@ th, td {
   color: #ffffff !important;
 }
 
-/* Links should be lighter blue but still visible */
+/* =================================================================
+   TABLES - MATCHING "OTHER SECURITIES" STYLE
+   ================================================================= */
+
+/* Table container */
+table {
+  background-color: #003166 !important;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* TABLE HEADERS - PROMINENT DARK BLUE BACKGROUND */
+thead,
+thead tr {
+  background-color: #001f3f !important; /* Darker than body for prominence */
+  border-bottom: 2px solid #004187 !important;
+}
+
+thead th {
+  background-color: #001f3f !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important; /* Small caps style */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 16px 12px !important;
+  border-bottom: 2px solid #004187 !important;
+}
+
+/* Alternative sticky header styling for Company Metrics table */
+th.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #001f3f !important;
+}
+
+/* TABLE BODY - Medium blue background */
+tbody,
+tbody tr {
+  background-color: #003166 !important;
+}
+
+tbody td {
+  background-color: #003166 !important;
+  color: #ffffff !important;
+  padding: 12px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Alternating row colors for better readability */
+tbody tr:nth-child(even) {
+  background-color: #002952 !important;
+}
+
+tbody tr:nth-child(even) td {
+  background-color: #002952 !important;
+}
+
+/* Hover effect */
+tbody tr:hover,
+tbody tr:hover td {
+  background-color: #004187 !important;
+  cursor: pointer;
+}
+
+/* Border styling */
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Right-aligned columns (numbers) */
+th.text-right,
+td.text-right {
+  text-align: right !important;
+}
+
+/* =================================================================
+   SPECIFIC TABLE FIXES
+   ================================================================= */
+
+/* Index Table, Today's Trade, Disclosures headers */
+.bg-\[\#f8f9fb\],
+[class*="bg-[#f8f9fb]"] {
+  background-color: #001f3f !important;
+}
+
+/* Sector badges - keep their colors but ensure text is visible */
+.bg-blue-50 { background-color: #1e40af !important; color: #dbeafe !important; }
+.bg-amber-50 { background-color: #d97706 !important; color: #fef3c7 !important; }
+.bg-emerald-50 { background-color: #059669 !important; color: #d1fae5 !important; }
+.bg-violet-50 { background-color: #7c3aed !important; color: #ede9fe !important; }
+
+/* =================================================================
+   INTERACTIVE ELEMENTS
+   ================================================================= */
+
+/* Links */
 a {
   color: #93c5fd !important;
   text-decoration: none;
@@ -131,7 +227,11 @@ input::placeholder {
   color: #9ca3af !important;
 }
 
-/* Force white text on any background variants */
+/* =================================================================
+   UTILITY OVERRIDES
+   ================================================================= */
+
+/* Force white on any background variants */
 .bg-background,
 .bg-card,
 .bg-popover,
@@ -142,17 +242,16 @@ input::placeholder {
   color: #ffffff !important;
 }
 
-/* Ensure numbers and data are visible */
-.text-muted,
-.text-muted-foreground,
-[class*="muted"] {
-  color: #d1d5db !important;
-}
-
-/* Fix any shadcn components that might have dark text */
+/* Shadcn/Radix UI components */
 [role="table"],
 [role="row"],
 [role="cell"],
 [role="columnheader"] {
   color: #ffffff !important;
+}
+
+/* Card content areas */
+[class*="CardContent"],
+[class*="CardHeader"] {
+  background-color: transparent !important;
 }

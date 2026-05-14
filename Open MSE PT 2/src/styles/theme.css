@@ -13,7 +13,7 @@
   --secondary: #002952;
   --secondary-foreground: #ffffff;
   --muted: #002952;
-  --muted-foreground: #9ca3af;
+  --muted-foreground: #ffffff; /* CHANGED from #9ca3af to WHITE */
   --accent: #004187;
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
@@ -53,7 +53,7 @@
   --secondary: #002952;
   --secondary-foreground: #ffffff;
   --muted: #002952;
-  --muted-foreground: #9ca3af;
+  --muted-foreground: #ffffff; /* CHANGED from #9ca3af to WHITE */
   --accent: #004187;
   --accent-foreground: #ffffff;
   --destructive: #ef4444;
@@ -141,41 +141,95 @@
     font-size: var(--text-2xl);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
+    color: #ffffff;
   }
 
   h2 {
     font-size: var(--text-xl);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
+    color: #ffffff;
   }
 
   h3 {
     font-size: var(--text-lg);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
+    color: #ffffff;
   }
 
   h4 {
     font-size: var(--text-base);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
+    color: #ffffff;
   }
 
   label {
     font-size: var(--text-base);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
+    color: #ffffff;
   }
 
   button {
     font-size: var(--text-base);
     font-weight: var(--font-weight-medium);
     line-height: 1.5;
+    color: #ffffff;
   }
 
   input {
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
+    color: #ffffff;
+  }
+
+  /* TABLE STYLING - Make headers stand out */
+  thead {
+    background-color: #001f3f !important;
+  }
+
+  thead th {
+    background-color: #001f3f !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+  }
+
+  tbody tr {
+    background-color: #003166 !important;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #002952 !important;
+  }
+
+  tbody tr:hover {
+    background-color: #004187 !important;
+  }
+
+  td, th {
+    color: #ffffff !important;
+  }
+
+  /* Special override for the gray bg class used in Company Metrics header */
+  .bg-\[\#f8f9fb\] {
+    background-color: #001f3f !important;
+  }
+
+  /* Make ticker symbols and company names bright white and bold */
+  .text-\[\#1a3a5c\] {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+  }
+
+  /* Ensure all table text is white */
+  .text-muted-foreground {
+    color: #ffffff !important;
+  }
+
+  .text-foreground {
+    color: #ffffff !important;
   }
 }

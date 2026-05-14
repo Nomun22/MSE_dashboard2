@@ -2,15 +2,15 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #004187;
+  background-color: #004187 !important;
   min-height: 100vh;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 /* Remove default backgrounds from root elements */
 #root,
 #app {
-  background: transparent;
+  background: transparent !important;
 }
 
 /* Container should be transparent to show blue background */
@@ -18,76 +18,141 @@ body {
   background: transparent !important;
 }
 
+/* FORCE all text to be white - most important fix */
+* {
+  color: inherit;
+}
+
+body,
+body *,
+div,
+p,
+span,
+h1, h2, h3, h4, h5, h6,
+label,
+td, th,
+li,
+a {
+  color: #ffffff !important;
+}
+
 /* Content cards - Darker blue than background */
 main > section,
-main > div:not(.container) {
-  background-color: #003166;
+main > div:not(.container),
+section {
+  background-color: #003166 !important;
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  color: #ffffff;
 }
 
 /* Header - Darker blue card */
 header {
-  background-color: #003166;
+  background-color: #003166 !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  color: #ffffff;
 }
 
 /* Footer - Darker blue */
 footer {
-  background-color: #003166;
+  background-color: #003166 !important;
   border-top: 1px solid #004187;
-  color: #ffffff;
 }
 
-/* Tables - Darker blue background with white text */
+/* TABLES - Force blue styling on ALL tables */
 table {
-  background-color: #003166;
-  color: #ffffff;
+  background-color: #003166 !important;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-thead {
-  background-color: #002952;
-  color: #ffffff;
+thead,
+thead tr,
+thead th {
+  background-color: #002952 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+tbody,
+tbody tr,
+tbody td {
+  background-color: #003166 !important;
+  color: #ffffff !important;
 }
 
 tbody tr:hover {
-  background-color: #004187;
+  background-color: #004187 !important;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff !important;
 }
 
 /* Card components - Darker blue */
 .card,
 [class*="Card"],
-[class*="card"] {
-  background-color: #003166;
+[class*="card"],
+.bg-card {
+  background-color: #003166 !important;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
-/* Make sure all text is white by default */
-h1, h2, h3, h4, h5, h6, p, span, div, td, th {
-  color: inherit;
-}
-
-/* Links should be lighter blue */
+/* Links should be lighter blue but still visible */
 a {
-  color: #60a5fa;
+  color: #93c5fd !important;
+  text-decoration: none;
 }
 
 a:hover {
-  color: #93c5fd;
+  color: #bfdbfe !important;
+  text-decoration: underline;
+}
+
+/* Buttons */
+button {
+  color: #ffffff !important;
 }
 
 /* Input fields */
-input, select, textarea {
-  background-color: #002952;
-  color: #ffffff;
-  border: 1px solid #004187;
+input,
+select,
+textarea {
+  background-color: #002952 !important;
+  color: #ffffff !important;
+  border: 1px solid #004187 !important;
 }
 
 input::placeholder {
-  color: #9ca3af;
+  color: #9ca3af !important;
+}
+
+/* Force white text on any background variants */
+.bg-background,
+.bg-card,
+.bg-popover,
+.bg-primary,
+.bg-secondary,
+.bg-muted,
+.bg-accent {
+  color: #ffffff !important;
+}
+
+/* Ensure numbers and data are visible */
+.text-muted,
+.text-muted-foreground,
+[class*="muted"] {
+  color: #d1d5db !important;
+}
+
+/* Fix any shadcn components that might have dark text */
+[role="table"],
+[role="row"],
+[role="cell"],
+[role="columnheader"] {
+  color: #ffffff !important;
 }

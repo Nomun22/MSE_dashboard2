@@ -61,7 +61,7 @@ export function DisclosuresReports({ language }: DisclosuresReportsProps) {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Latest Disclosures */}
         <div className="overflow-hidden rounded-lg border border-border" style={{ backgroundColor: '#003166' }}>
-          <div className="border-b border-border px-6 py-4" style={{ backgroundColor: '#001f3f' }}>
+          <div className="border-b border-border px-6 py-4" style={{ backgroundColor: '#003166' }}>
             <h3 className="flex items-center gap-2 font-medium text-white">
               <FileText className="h-5 w-5" style={{ color: '#60a5fa' }} />
               {language === "en" ? "Latest Disclosures" : "Сүүлийн мэдээллүүд"}
@@ -80,7 +80,7 @@ export function DisclosuresReports({ language }: DisclosuresReportsProps) {
                     </div>
                   </div>
                   {item.amount && (
-                    <div className="text-sm font-medium" style={{ color: '#10b981' }}>{item.amount}</div>
+                    <div className="text-sm font-semibold" style={{ color: '#10b981' }}>{item.amount}</div>
                   )}
                 </div>
               </div>
@@ -90,7 +90,7 @@ export function DisclosuresReports({ language }: DisclosuresReportsProps) {
 
         {/* Upcoming Meetings */}
         <div className="overflow-hidden rounded-lg border border-border" style={{ backgroundColor: '#003166' }}>
-          <div className="border-b border-border px-6 py-4" style={{ backgroundColor: '#001f3f' }}>
+          <div className="border-b border-border px-6 py-4" style={{ backgroundColor: '#003166' }}>
             <h3 className="flex items-center gap-2 font-medium text-white">
               <Calendar className="h-5 w-5" style={{ color: '#f97316' }} />
               {language === "en" ? "Upcoming Meetings" : "Удирдах зөвлөлийн хурлууд"}

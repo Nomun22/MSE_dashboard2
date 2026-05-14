@@ -38,20 +38,21 @@ export function TodaysTrade({ language, onRowClick }: TodaysTradeProps) {
 
   return (
     <section className="space-y-6">
-      <h2 className="text-2xl font-medium">
+      <h2 className="text-2xl font-medium text-white">
         {language === "en" ? "Today's Trade" : "Өнөөдрийн арилжаа"}
       </h2>
 
-      <div className="overflow-hidden rounded-lg border border-border bg-white">
+      <div className="overflow-hidden rounded-lg border border-border" style={{ backgroundColor: '#003166' }}>
         {/* Category Tabs */}
         <div className="flex border-b border-border">
           <button
             onClick={() => setActiveCategory("stocks")}
             className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
               activeCategory === "stocks"
-                ? "border-b-2 border-primary bg-blue-50 text-primary"
-                : "text-muted-foreground hover:bg-gray-50"
+                ? "border-b-2 border-primary text-white"
+                : "text-white/70 hover:text-white"
             }`}
+            style={{ backgroundColor: activeCategory === "stocks" ? '#004187' : 'transparent' }}
           >
             {language === "en" ? "Stocks" : "ХУВЬЦАА"}
           </button>
@@ -59,9 +60,10 @@ export function TodaysTrade({ language, onRowClick }: TodaysTradeProps) {
             onClick={() => setActiveCategory("bonds")}
             className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
               activeCategory === "bonds"
-                ? "border-b-2 border-primary bg-blue-50 text-primary"
-                : "text-muted-foreground hover:bg-gray-50"
+                ? "border-b-2 border-primary text-white"
+                : "text-white/70 hover:text-white"
             }`}
+            style={{ backgroundColor: activeCategory === "bonds" ? '#004187' : 'transparent' }}
           >
             {language === "en" ? "Bonds" : "БОНД"}
           </button>
@@ -69,9 +71,10 @@ export function TodaysTrade({ language, onRowClick }: TodaysTradeProps) {
             onClick={() => setActiveCategory("funds")}
             className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
               activeCategory === "funds"
-                ? "border-b-2 border-primary bg-blue-50 text-primary"
-                : "text-muted-foreground hover:bg-gray-50"
+                ? "border-b-2 border-primary text-white"
+                : "text-white/70 hover:text-white"
             }`}
+            style={{ backgroundColor: activeCategory === "funds" ? '#004187' : 'transparent' }}
           >
             {language === "en" ? "Funds" : "ХӨРӨНГӨ"}
           </button>
@@ -81,51 +84,52 @@ export function TodaysTrade({ language, onRowClick }: TodaysTradeProps) {
         {activeCategory === "stocks" && (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-gray-50">
+              <thead style={{ backgroundColor: '#001f3f' }}>
                 <tr className="border-b border-border">
-                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-left font-medium text-white">
                     {language === "en" ? "Symbol" : "Тэмдэг"}
                   </th>
-                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-left font-medium text-white">
                     {language === "en" ? "Name" : "Нэр"}
                   </th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-right font-medium text-white">
                     {language === "en" ? "Price" : "Үнэ"}
                   </th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-right font-medium text-white">
                     {language === "en" ? "Change" : "Өөрчлөлт"}
                   </th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-right font-medium text-white">
                     {language === "en" ? "Change %" : "Өөрчлөлт %"}
                   </th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-right font-medium text-white">
                     {language === "en" ? "Volume" : "Эзлэхүүн"}
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border bg-white">
-                {stocksData.map((stock) => {
+              <tbody className="divide-y divide-border">
+                {stocksData.map((stock, idx) => {
                   const isPositive = stock.changePercent > 0;
                   const isNeutral = stock.changePercent === 0;
                   return (
                     <tr
                       key={stock.symbol}
                       onClick={() => onRowClick?.(stock.symbol, stock.name[language])}
-                      className="cursor-pointer hover:bg-gray-50"
+                      className="cursor-pointer transition-colors"
+                      style={{ backgroundColor: idx % 2 === 0 ? '#003166' : '#002952' }}
                     >
-                      <td className="px-4 py-3 font-medium text-primary">{stock.symbol}</td>
-                      <td className="px-4 py-3">{stock.name[language]}</td>
-                      <td className="px-4 py-3 text-right font-medium">{stock.price.toLocaleString()}</td>
-                      <td className={`px-4 py-3 text-right ${isNeutral ? "text-muted-foreground" : isPositive ? "text-green-600" : "text-red-600"}`}>
+                      <td className="px-4 py-3 font-medium" style={{ color: '#60a5fa' }}>{stock.symbol}</td>
+                      <td className="px-4 py-3 text-white">{stock.name[language]}</td>
+                      <td className="px-4 py-3 text-right font-medium text-white">{stock.price.toLocaleString()}</td>
+                      <td className={`px-4 py-3 text-right font-semibold`} style={{ color: isNeutral ? '#9ca3af' : isPositive ? '#10b981' : '#ef4444' }}>
                         <div className="flex items-center justify-end gap-1">
                           {!isNeutral && (isPositive ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />)}
                           {isPositive ? "+" : ""}{stock.change.toFixed(2)}
                         </div>
                       </td>
-                      <td className={`px-4 py-3 text-right ${isNeutral ? "text-muted-foreground" : isPositive ? "text-green-600" : "text-red-600"}`}>
+                      <td className={`px-4 py-3 text-right font-semibold`} style={{ color: isNeutral ? '#9ca3af' : isPositive ? '#10b981' : '#ef4444' }}>
                         {isPositive ? "+" : ""}{stock.changePercent.toFixed(2)}%
                       </td>
-                      <td className="px-4 py-3 text-right text-muted-foreground">{stock.volume.toLocaleString()}</td>
+                      <td className="px-4 py-3 text-right text-white/70">{stock.volume.toLocaleString()}</td>
                     </tr>
                   );
                 })}
@@ -138,41 +142,42 @@ export function TodaysTrade({ language, onRowClick }: TodaysTradeProps) {
         {activeCategory === "bonds" && (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-gray-50">
+              <thead style={{ backgroundColor: '#001f3f' }}>
                 <tr className="border-b border-border">
-                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-left font-medium text-white">
                     {language === "en" ? "Symbol" : "Тэмдэг"}
                   </th>
-                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-left font-medium text-white">
                     {language === "en" ? "Name" : "Нэр"}
                   </th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-right font-medium text-white">
                     {language === "en" ? "Price" : "Үнэ"}
                   </th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-right font-medium text-white">
                     {language === "en" ? "Yield %" : "Өгөөж %"}
                   </th>
-                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-left font-medium text-white">
                     {language === "en" ? "Maturity" : "Дуусах хугацаа"}
                   </th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-right font-medium text-white">
                     {language === "en" ? "Volume" : "Эзлэхүүн"}
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border bg-white">
-                {bondsData.map((bond) => (
+              <tbody className="divide-y divide-border">
+                {bondsData.map((bond, idx) => (
                   <tr
                     key={bond.symbol}
                     onClick={() => onRowClick?.(bond.symbol, bond.name[language])}
-                    className="cursor-pointer hover:bg-gray-50"
+                    className="cursor-pointer transition-colors"
+                    style={{ backgroundColor: idx % 2 === 0 ? '#003166' : '#002952' }}
                   >
-                    <td className="px-4 py-3 font-medium text-primary">{bond.symbol}</td>
-                    <td className="px-4 py-3">{bond.name[language]}</td>
-                    <td className="px-4 py-3 text-right font-medium">{bond.price.toLocaleString()}</td>
-                    <td className="px-4 py-3 text-right">{bond.yield.toFixed(1)}%</td>
-                    <td className="px-4 py-3">{bond.maturity}</td>
-                    <td className="px-4 py-3 text-right text-muted-foreground">{bond.volume.toLocaleString()}</td>
+                    <td className="px-4 py-3 font-medium" style={{ color: '#60a5fa' }}>{bond.symbol}</td>
+                    <td className="px-4 py-3 text-white">{bond.name[language]}</td>
+                    <td className="px-4 py-3 text-right font-medium text-white">{bond.price.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-right text-white">{bond.yield.toFixed(1)}%</td>
+                    <td className="px-4 py-3 text-white">{bond.maturity}</td>
+                    <td className="px-4 py-3 text-right text-white/70">{bond.volume.toLocaleString()}</td>
                   </tr>
                 ))}
               </tbody>
@@ -184,50 +189,51 @@ export function TodaysTrade({ language, onRowClick }: TodaysTradeProps) {
         {activeCategory === "funds" && (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead className="bg-gray-50">
+              <thead style={{ backgroundColor: '#001f3f' }}>
                 <tr className="border-b border-border">
-                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-left font-medium text-white">
                     {language === "en" ? "Symbol" : "Тэмдэг"}
                   </th>
-                  <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-left font-medium text-white">
                     {language === "en" ? "Name" : "Нэр"}
                   </th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-right font-medium text-white">
                     {language === "en" ? "NAV" : "НАҮ"}
                   </th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-right font-medium text-white">
                     {language === "en" ? "Change" : "Өөрчлөлт"}
                   </th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-right font-medium text-white">
                     {language === "en" ? "Change %" : "Өөрчлөлт %"}
                   </th>
-                  <th className="px-4 py-3 text-right font-medium text-muted-foreground">
+                  <th className="px-4 py-3 text-right font-medium text-white">
                     {language === "en" ? "AUM" : "Нийт хөрөнгө"}
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border bg-white">
-                {fundsData.map((fund) => {
+              <tbody className="divide-y divide-border">
+                {fundsData.map((fund, idx) => {
                   const isPositive = fund.changePercent > 0;
                   return (
                     <tr
                       key={fund.symbol}
                       onClick={() => onRowClick?.(fund.symbol, fund.name[language])}
-                      className="cursor-pointer hover:bg-gray-50"
+                      className="cursor-pointer transition-colors"
+                      style={{ backgroundColor: idx % 2 === 0 ? '#003166' : '#002952' }}
                     >
-                      <td className="px-4 py-3 font-medium text-primary">{fund.symbol}</td>
-                      <td className="px-4 py-3">{fund.name[language]}</td>
-                      <td className="px-4 py-3 text-right font-medium">{fund.nav.toLocaleString()}</td>
-                      <td className={`px-4 py-3 text-right ${isPositive ? "text-green-600" : "text-red-600"}`}>
+                      <td className="px-4 py-3 font-medium" style={{ color: '#60a5fa' }}>{fund.symbol}</td>
+                      <td className="px-4 py-3 text-white">{fund.name[language]}</td>
+                      <td className="px-4 py-3 text-right font-medium text-white">{fund.nav.toLocaleString()}</td>
+                      <td className={`px-4 py-3 text-right font-semibold`} style={{ color: isPositive ? '#10b981' : '#ef4444' }}>
                         <div className="flex items-center justify-end gap-1">
                           {isPositive ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
                           {isPositive ? "+" : ""}{fund.change.toFixed(2)}
                         </div>
                       </td>
-                      <td className={`px-4 py-3 text-right ${isPositive ? "text-green-600" : "text-red-600"}`}>
+                      <td className={`px-4 py-3 text-right font-semibold`} style={{ color: isPositive ? '#10b981' : '#ef4444' }}>
                         {isPositive ? "+" : ""}{fund.changePercent.toFixed(2)}%
                       </td>
-                      <td className="px-4 py-3 text-right text-muted-foreground">{fund.aum}</td>
+                      <td className="px-4 py-3 text-right text-white/70">{fund.aum}</td>
                     </tr>
                   );
                 })}

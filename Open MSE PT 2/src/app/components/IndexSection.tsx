@@ -126,20 +126,21 @@ export function IndexSection({ language }: IndexSectionProps) {
 
   return (
     <section className="space-y-6">
-      <h2 className="text-2xl font-medium">
+      <h2 className="text-2xl font-medium text-white">
         {language === "en" ? "Index" : "Индекс"}
       </h2>
 
-      <div className="overflow-hidden rounded-lg border border-border bg-white">
+      <div className="overflow-hidden rounded-lg border border-border" style={{ backgroundColor: '#003166' }}>
         {/* Tabs */}
         <div className="flex border-b border-border">
           <button
             onClick={() => setActiveIndex("top20")}
             className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
               activeIndex === "top20"
-                ? "border-b-2 border-primary bg-blue-50 text-primary"
-                : "text-muted-foreground hover:bg-gray-50"
+                ? "border-b-2 border-primary text-white" 
+                : "text-white/70 hover:text-white"
             }`}
+            style={{ backgroundColor: activeIndex === "top20" ? '#004187' : 'transparent' }}
           >
             TOP - 20
           </button>
@@ -147,9 +148,10 @@ export function IndexSection({ language }: IndexSectionProps) {
             onClick={() => setActiveIndex("mseA")}
             className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
               activeIndex === "mseA"
-                ? "border-b-2 border-primary bg-blue-50 text-primary"
-                : "text-muted-foreground hover:bg-gray-50"
+                ? "border-b-2 border-primary text-white"
+                : "text-white/70 hover:text-white"
             }`}
+            style={{ backgroundColor: activeIndex === "mseA" ? '#004187' : 'transparent' }}
           >
             MSE - A
           </button>
@@ -157,9 +159,10 @@ export function IndexSection({ language }: IndexSectionProps) {
             onClick={() => setActiveIndex("mseB")}
             className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
               activeIndex === "mseB"
-                ? "border-b-2 border-primary bg-blue-50 text-primary"
-                : "text-muted-foreground hover:bg-gray-50"
+                ? "border-b-2 border-primary text-white"
+                : "text-white/70 hover:text-white"
             }`}
+            style={{ backgroundColor: activeIndex === "mseB" ? '#004187' : 'transparent' }}
           >
             MSE - B
           </button>
@@ -170,18 +173,18 @@ export function IndexSection({ language }: IndexSectionProps) {
           <div className="space-y-4">
             {/* Index Value */}
             <div className="space-y-2">
-              <div className="text-4xl font-semibold">{currentIndex.value.toLocaleString()}</div>
+              <div className="text-4xl font-semibold text-white">{currentIndex.value.toLocaleString()}</div>
               <div className="flex items-center gap-2">
                 {isPositive ? (
-                  <TrendingUp className="h-4 w-4 text-green-600" />
+                  <TrendingUp className="h-4 w-4 text-green-400" />
                 ) : (
-                  <TrendingDown className="h-4 w-4 text-red-600" />
+                  <TrendingDown className="h-4 w-4 text-red-400" />
                 )}
-                <span className={isPositive ? "text-green-600" : "text-red-600"}>
+                <span className={isPositive ? "text-green-400" : "text-red-400"}>
                   {isPositive ? "+" : ""}
                   {currentIndex.change.toFixed(2)}
                 </span>
-                <span className={isPositive ? "text-green-600" : "text-red-600"}>
+                <span className={isPositive ? "text-green-400" : "text-red-400"}>
                   {isPositive ? "+" : ""}
                   {currentIndex.changePercent.toFixed(2)}%
                 </span>
@@ -195,8 +198,9 @@ export function IndexSection({ language }: IndexSectionProps) {
                 className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
                   timePeriod === "day"
                     ? "bg-primary text-white"
-                    : "text-muted-foreground hover:bg-gray-100"
+                    : "text-white/70 hover:text-white"
                 }`}
+                style={{ backgroundColor: timePeriod === "day" ? '#60a5fa' : '#002952' }}
               >
                 {language === "en" ? "Day" : "Өдөр"}
               </button>
@@ -205,8 +209,9 @@ export function IndexSection({ language }: IndexSectionProps) {
                 className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
                   timePeriod === "week"
                     ? "bg-primary text-white"
-                    : "text-muted-foreground hover:bg-gray-100"
+                    : "text-white/70 hover:text-white"
                 }`}
+                style={{ backgroundColor: timePeriod === "week" ? '#60a5fa' : '#002952' }}
               >
                 {language === "en" ? "Week" : "7 хоног"}
               </button>
@@ -215,8 +220,9 @@ export function IndexSection({ language }: IndexSectionProps) {
                 className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
                   timePeriod === "month"
                     ? "bg-primary text-white"
-                    : "text-muted-foreground hover:bg-gray-100"
+                    : "text-white/70 hover:text-white"
                 }`}
+                style={{ backgroundColor: timePeriod === "month" ? '#60a5fa' : '#002952' }}
               >
                 {language === "en" ? "Month" : "Сар"}
               </button>
@@ -225,19 +231,20 @@ export function IndexSection({ language }: IndexSectionProps) {
                 className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
                   timePeriod === "year"
                     ? "bg-primary text-white"
-                    : "text-muted-foreground hover:bg-gray-100"
+                    : "text-white/70 hover:text-white"
                 }`}
+                style={{ backgroundColor: timePeriod === "year" ? '#60a5fa' : '#002952' }}
               >
                 {language === "en" ? "Year" : "Жил"}
               </button>
             </div>
 
             {/* Interactive Chart */}
-            <div className="h-64 w-full rounded border border-border bg-gray-50">
+            <div className="h-64 w-full rounded border border-border" style={{ backgroundColor: '#002952' }}>
               <svg className="h-full w-full p-4" viewBox="0 0 400 200">
                 {/* Y-axis labels - dynamic based on data */}
                 {yAxisLabels.map((label, i) => (
-                  <text key={i} x="5" y={padding + (i * (chartHeight / 4))} className="text-xs fill-muted-foreground">
+                  <text key={i} x="5" y={padding + (i * (chartHeight / 4))} className="text-xs" fill="#ffffff">
                     {label.toLocaleString()}
                   </text>
                 ))}
@@ -250,7 +257,7 @@ export function IndexSection({ language }: IndexSectionProps) {
                     y1={padding + (i * (chartHeight / 4))}
                     x2="380"
                     y2={padding + (i * (chartHeight / 4))}
-                    stroke="#e5e7eb"
+                    stroke="rgba(255,255,255,0.1)"
                     strokeWidth="1"
                   />
                 ))}
@@ -259,7 +266,7 @@ export function IndexSection({ language }: IndexSectionProps) {
                 <polyline
                   points={points}
                   fill="none"
-                  stroke="#004187"
+                  stroke="#60a5fa"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -276,7 +283,7 @@ export function IndexSection({ language }: IndexSectionProps) {
                         cx={x}
                         cy={y}
                         r="4"
-                        fill="#004187"
+                        fill="#60a5fa"
                         className="transition-all duration-500 ease-in-out"
                       />
                       <circle
@@ -298,7 +305,8 @@ export function IndexSection({ language }: IndexSectionProps) {
                     key={i}
                     x={50 + (i * (chartWidth / (labels.length - 1)))}
                     y="195"
-                    className="text-xs fill-muted-foreground"
+                    className="text-xs"
+                    fill="#ffffff"
                     textAnchor="middle"
                   >
                     {label}
@@ -308,27 +316,31 @@ export function IndexSection({ language }: IndexSectionProps) {
             </div>
           </div>
 
-          {/* Right: Constituents Table */}
+          {/* Right: Constituents Table - BLUE THEME */}
           <div className="overflow-hidden rounded-lg border border-border">
             <div className="max-h-96 overflow-y-auto">
               <table className="w-full text-sm">
-                <thead className="sticky top-0 bg-gray-50">
+                <thead className="sticky top-0" style={{ backgroundColor: '#001f3f' }}>
                   <tr className="border-b border-border">
-                    <th className="px-4 py-3 text-left font-medium text-muted-foreground">№</th>
-                    <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+                    <th className="px-4 py-3 text-left font-medium text-white">№</th>
+                    <th className="px-4 py-3 text-left font-medium text-white">
                       {language === "en" ? "Symbol" : "Тэмдэг"}
                     </th>
-                    <th className="px-4 py-3 text-left font-medium text-muted-foreground">
+                    <th className="px-4 py-3 text-left font-medium text-white">
                       {language === "en" ? "Name" : "Нэр"}
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border bg-white">
-                  {currentIndex.constituents.map((constituent) => (
-                    <tr key={constituent.symbol} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 text-muted-foreground">{constituent.rank}</td>
-                      <td className="px-4 py-3 font-medium text-primary">{constituent.symbol}</td>
-                      <td className="px-4 py-3">{constituent.name[language]}</td>
+                <tbody className="divide-y divide-border" style={{ backgroundColor: '#003166' }}>
+                  {currentIndex.constituents.map((constituent, idx) => (
+                    <tr 
+                      key={constituent.symbol} 
+                      className="hover:bg-opacity-80 transition-colors"
+                      style={{ backgroundColor: idx % 2 === 0 ? '#003166' : '#002952' }}
+                    >
+                      <td className="px-4 py-3 text-white">{constituent.rank}</td>
+                      <td className="px-4 py-3 font-semibold text-white">{constituent.symbol}</td>
+                      <td className="px-4 py-3 text-white">{constituent.name[language]}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -10,22 +10,22 @@ interface TodaysTradeProps {
 type TradeCategory = "stocks" | "bonds" | "funds";
 
 const stocksData = [
-  { symbol: "MAHN", name: { en: "Mah-Impex JSC", mn: "Мах-Импекс ХК" }, price: 21838.00, change: 1.62, changePercent: 3.88, volume: 1250 },
-  { symbol: "KHAN", name: { en: "Khan Bank JSC", mn: "Хаан банк ХК" }, price: 81.00, change: -1.12, changePercent: -1.39, volume: 45600 },
-  { symbol: "APU", name: { en: "APU JSC", mn: "АПУ ХК" }, price: 2409.00, change: 0, changePercent: 0, volume: 890 },
-  { symbol: "KHAS", name: { en: "Khasaat delger JSC", mn: "Хасаат дэлгэр ХК" }, price: 210.00, change: 2.03, changePercent: 0.98, volume: 3200 },
-  { symbol: "SUU", name: { en: "Suu JSC", mn: "Сүү ХК" }, price: 164.00, change: -2.88, changePercent: -1.73, volume: 7800 },
-  { symbol: "GOV", name: { en: "Gobi JSC", mn: "Говь ХК" }, price: 116.00, change: 0.87, changePercent: 0.75, volume: 12400 },
-  { symbol: "ALTUN", name: { en: "Altun JSC", mn: "Алтун ХК" }, price: 80.00, change: -1.32, changePercent: -1.62, volume: 5600 },
-  { symbol: "TAIL", name: { en: "Talkh chikher JSC", mn: "Талх чихэр ХК" }, price: 29800.00, change: 1.18, changePercent: 2.60, volume: 340 },
-  { symbol: "AARD", name: { en: "Ard daatgal insurance JSC", mn: "Ард даатгалын нэгдсэн ХК" }, price: 409.00, change: 0.12, changePercent: 0.78, volume: 8900 },
-  { symbol: "GLMT", name: { en: "Goloamt Suur JSC", mn: "Голомт Суур ХК" }, price: 203.00, change: -0.51, changePercent: -0.25, volume: 15200 },
+  { symbol: "MAHN", name: { en: "Mah-Impex JSC", mn: "Мах-Импекс ХК" }, price: 21838.0, change: 1.62, changePercent: 3.88, volume: 1250 },
+  { symbol: "KHAN", name: { en: "Khan Bank JSC", mn: "Хаан банк ХК" }, price: 81.0, change: -1.12, changePercent: -1.39, volume: 45600 },
+  { symbol: "APU", name: { en: "APU JSC", mn: "АПУ ХК" }, price: 2409.0, change: 0, changePercent: 0, volume: 890 },
+  { symbol: "KHAS", name: { en: "Khasaat delger JSC", mn: "Хасаат дэлгэр ХК" }, price: 210.0, change: 2.03, changePercent: 0.98, volume: 3200 },
+  { symbol: "SUU", name: { en: "Suu JSC", mn: "Сүү ХК" }, price: 164.0, change: -2.88, changePercent: -1.73, volume: 7800 },
+  { symbol: "GOV", name: { en: "Gobi JSC", mn: "Говь ХК" }, price: 116.0, change: 0.87, changePercent: 0.75, volume: 12400 },
+  { symbol: "ALTUN", name: { en: "Altun JSC", mn: "Алтун ХК" }, price: 80.0, change: -1.32, changePercent: -1.62, volume: 5600 },
+  { symbol: "TAIL", name: { en: "Talkh chikher JSC", mn: "Талх чихэр ХК" }, price: 29800.0, change: 1.18, changePercent: 2.6, volume: 340 },
+  { symbol: "AARD", name: { en: "Ard daatgal insurance JSC", mn: "Ард даатгалын нэгдсэн ХК" }, price: 409.0, change: 0.12, changePercent: 0.78, volume: 8900 },
+  { symbol: "GLMT", name: { en: "Goloamt Suur JSC", mn: "Голомт Суур ХК" }, price: 203.0, change: -0.51, changePercent: -0.25, volume: 15200 },
 ];
 
 const bondsData = [
-  { symbol: "DBM2019A", name: { en: "Government Bond 2019A", mn: "Засгийн газрын бонд 2019А" }, price: 1000.00, yield: 12.5, maturity: "2026-12-01", volume: 500 },
-  { symbol: "DBM2020B", name: { en: "Government Bond 2020B", mn: "Засгийн газрын бонд 2020Б" }, price: 980.00, yield: 13.2, maturity: "2027-06-15", volume: 1200 },
-  { symbol: "CORP001", name: { en: "Corporate Bond 001", mn: "Корпорацийн бонд 001" }, price: 1050.00, yield: 14.8, maturity: "2026-09-30", volume: 350 },
+  { symbol: "DBM2019A", name: { en: "Government Bond 2019A", mn: "Засгийн газрын бонд 2019А" }, price: 1000.0, yield: 12.5, maturity: "2026-12-01", volume: 500 },
+  { symbol: "DBM2020B", name: { en: "Government Bond 2020B", mn: "Засгийн газрын бонд 2020Б" }, price: 980.0, yield: 13.2, maturity: "2027-06-15", volume: 1200 },
+  { symbol: "CORP001", name: { en: "Corporate Bond 001", mn: "Корпорацийн бонд 001" }, price: 1050.0, yield: 14.8, maturity: "2026-09-30", volume: 350 },
 ];
 
 const fundsData = [
@@ -36,86 +36,46 @@ const fundsData = [
 export function TodaysTrade({ language, onRowClick }: TodaysTradeProps) {
   const [activeCategory, setActiveCategory] = useState<TradeCategory>("stocks");
 
+  const tabClass = (active: boolean) =>
+    `flex-1 px-6 py-3 text-sm font-medium transition-colors ${
+      active
+        ? "border-b-2 border-blue-600 bg-blue-50 text-blue-700"
+        : "text-slate-500 hover:bg-slate-50"
+    }`;
+
   return (
     <section className="space-y-6">
-      <h2 className="text-2xl font-medium" style={{ color: '#ffffff' }}>
+      <h2 className="text-2xl font-medium text-slate-900">
         {language === "en" ? "Today's Trade" : "Өнөөдрийн арилжаа"}
       </h2>
 
-      <div className="overflow-hidden rounded-lg border border-border" style={{ backgroundColor: '#003166' }}>
-        {/* Category Tabs */}
-        <div className="flex border-b border-border">
-          <button
-            onClick={() => setActiveCategory("stocks")}
-            className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
-              activeCategory === "stocks"
-                ? "border-b-2 border-primary"
-                : ""
-            }`}
-            style={{ 
-              backgroundColor: activeCategory === "stocks" ? '#004187' : 'transparent',
-              color: activeCategory === "stocks" ? '#ffffff' : 'rgba(255, 255, 255, 0.7)'
-            }}
-          >
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+        <div className="flex border-b border-slate-200">
+          <button onClick={() => setActiveCategory("stocks")} className={tabClass(activeCategory === "stocks")}>
             {language === "en" ? "Stocks" : "ХУВЬЦАА"}
           </button>
-          <button
-            onClick={() => setActiveCategory("bonds")}
-            className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
-              activeCategory === "bonds"
-                ? "border-b-2 border-primary"
-                : ""
-            }`}
-            style={{ 
-              backgroundColor: activeCategory === "bonds" ? '#004187' : 'transparent',
-              color: activeCategory === "bonds" ? '#ffffff' : 'rgba(255, 255, 255, 0.7)'
-            }}
-          >
+          <button onClick={() => setActiveCategory("bonds")} className={tabClass(activeCategory === "bonds")}>
             {language === "en" ? "Bonds" : "БОНД"}
           </button>
-          <button
-            onClick={() => setActiveCategory("funds")}
-            className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
-              activeCategory === "funds"
-                ? "border-b-2 border-primary"
-                : ""
-            }`}
-            style={{ 
-              backgroundColor: activeCategory === "funds" ? '#004187' : 'transparent',
-              color: activeCategory === "funds" ? '#ffffff' : 'rgba(255, 255, 255, 0.7)'
-            }}
-          >
+          <button onClick={() => setActiveCategory("funds")} className={tabClass(activeCategory === "funds")}>
             {language === "en" ? "Funds" : "ХӨРӨНГӨ"}
           </button>
         </div>
 
-        {/* Stocks Table */}
         {activeCategory === "stocks" && (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead style={{ backgroundColor: '#001f3f' }}>
-                <tr className="border-b border-border">
-                  <th className="px-4 py-3 text-left font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Symbol" : "Тэмдэг"}
-                  </th>
-                  <th className="px-4 py-3 text-left font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Name" : "Нэр"}
-                  </th>
-                  <th className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Price" : "Үнэ"}
-                  </th>
-                  <th className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Change" : "Өөрчлөлт"}
-                  </th>
-                  <th className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Change %" : "Өөрчлөлт %"}
-                  </th>
-                  <th className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Volume" : "Эзлэхүүн"}
-                  </th>
+              <thead className="bg-slate-50">
+                <tr className="border-b border-slate-200">
+                  <th className="px-4 py-3 text-left font-medium text-slate-500">{language === "en" ? "Symbol" : "Тэмдэг"}</th>
+                  <th className="px-4 py-3 text-left font-medium text-slate-500">{language === "en" ? "Name" : "Нэр"}</th>
+                  <th className="px-4 py-3 text-right font-medium text-slate-500">{language === "en" ? "Price" : "Үнэ"}</th>
+                  <th className="px-4 py-3 text-right font-medium text-slate-500">{language === "en" ? "Change" : "Өөрчлөлт"}</th>
+                  <th className="px-4 py-3 text-right font-medium text-slate-500">{language === "en" ? "Change %" : "Өөрчлөлт %"}</th>
+                  <th className="px-4 py-3 text-right font-medium text-slate-500">{language === "en" ? "Volume" : "Эзлэхүүн"}</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border">
+              <tbody className="divide-y divide-slate-200">
                 {stocksData.map((stock, idx) => {
                   const isPositive = stock.changePercent > 0;
                   const isNeutral = stock.changePercent === 0;
@@ -123,22 +83,21 @@ export function TodaysTrade({ language, onRowClick }: TodaysTradeProps) {
                     <tr
                       key={stock.symbol}
                       onClick={() => onRowClick?.(stock.symbol, stock.name[language])}
-                      className="cursor-pointer transition-colors"
-                      style={{ backgroundColor: idx % 2 === 0 ? '#003166' : '#002952' }}
+                      className={`cursor-pointer transition-colors hover:bg-blue-50 ${idx % 2 === 0 ? "bg-white" : "bg-slate-50"}`}
                     >
-                      <td className="px-4 py-3 font-medium" style={{ color: '#60a5fa' }}>{stock.symbol}</td>
-                      <td className="px-4 py-3" style={{ color: '#ffffff' }}>{stock.name[language]}</td>
-                      <td className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>{stock.price.toLocaleString()}</td>
-                      <td className="px-4 py-3 text-right font-semibold" style={{ color: isNeutral ? '#9ca3af' : isPositive ? '#10b981' : '#ef4444' }}>
+                      <td className="px-4 py-3 font-medium text-blue-700">{stock.symbol}</td>
+                      <td className="px-4 py-3 text-slate-900">{stock.name[language]}</td>
+                      <td className="px-4 py-3 text-right font-medium text-slate-900">{stock.price.toLocaleString()}</td>
+                      <td className={`px-4 py-3 text-right font-semibold ${isNeutral ? "text-slate-400" : isPositive ? "text-emerald-600" : "text-rose-600"}`}>
                         <div className="flex items-center justify-end gap-1">
                           {!isNeutral && (isPositive ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />)}
                           {isPositive ? "+" : ""}{stock.change.toFixed(2)}
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-right font-semibold" style={{ color: isNeutral ? '#9ca3af' : isPositive ? '#10b981' : '#ef4444' }}>
+                      <td className={`px-4 py-3 text-right font-semibold ${isNeutral ? "text-slate-400" : isPositive ? "text-emerald-600" : "text-rose-600"}`}>
                         {isPositive ? "+" : ""}{stock.changePercent.toFixed(2)}%
                       </td>
-                      <td className="px-4 py-3 text-right" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>{stock.volume.toLocaleString()}</td>
+                      <td className="px-4 py-3 text-right text-slate-500">{stock.volume.toLocaleString()}</td>
                     </tr>
                   );
                 })}
@@ -147,110 +106,17 @@ export function TodaysTrade({ language, onRowClick }: TodaysTradeProps) {
           </div>
         )}
 
-        {/* Bonds Table */}
         {activeCategory === "bonds" && (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
-              <thead style={{ backgroundColor: '#001f3f' }}>
-                <tr className="border-b border-border">
-                  <th className="px-4 py-3 text-left font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Symbol" : "Тэмдэг"}
-                  </th>
-                  <th className="px-4 py-3 text-left font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Name" : "Нэр"}
-                  </th>
-                  <th className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Price" : "Үнэ"}
-                  </th>
-                  <th className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Yield %" : "Өгөөж %"}
-                  </th>
-                  <th className="px-4 py-3 text-left font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Maturity" : "Дуусах хугацаа"}
-                  </th>
-                  <th className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Volume" : "Эзлэхүүн"}
-                  </th>
+              <thead className="bg-slate-50">
+                <tr className="border-b border-slate-200">
+                  <th className="px-4 py-3 text-left font-medium text-slate-500">Symbol</th>
+                  <th className="px-4 py-3 text-left font-medium text-slate-500">{language === "en" ? "Name" : "Нэр"}</th>
+                  <th className="px-4 py-3 text-right font-medium text-slate-500">{language === "en" ? "Price" : "Үнэ"}</th>
+                  <th className="px-4 py-3 text-right font-medium text-slate-500">{language === "en" ? "Yield" : "Өгөөж"}</th>
+                  <th className="px-4 py-3 text-right font-medium text-slate-500">{language === "en" ? "Maturity" : "Дуусах хугацаа"}</th>
+                  <th className="px-4 py-3 text-right font-medium text-slate-500">{language === "en" ? "Volume" : "Эзлэхүүн"}</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border">
-                {bondsData.map((bond, idx) => (
-                  <tr
-                    key={bond.symbol}
-                    onClick={() => onRowClick?.(bond.symbol, bond.name[language])}
-                    className="cursor-pointer transition-colors"
-                    style={{ backgroundColor: idx % 2 === 0 ? '#003166' : '#002952' }}
-                  >
-                    <td className="px-4 py-3 font-medium" style={{ color: '#60a5fa' }}>{bond.symbol}</td>
-                    <td className="px-4 py-3" style={{ color: '#ffffff' }}>{bond.name[language]}</td>
-                    <td className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>{bond.price.toLocaleString()}</td>
-                    <td className="px-4 py-3 text-right" style={{ color: '#ffffff' }}>{bond.yield.toFixed(1)}%</td>
-                    <td className="px-4 py-3" style={{ color: '#ffffff' }}>{bond.maturity}</td>
-                    <td className="px-4 py-3 text-right" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>{bond.volume.toLocaleString()}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {/* Funds Table */}
-        {activeCategory === "funds" && (
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead style={{ backgroundColor: '#001f3f' }}>
-                <tr className="border-b border-border">
-                  <th className="px-4 py-3 text-left font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Symbol" : "Тэмдэг"}
-                  </th>
-                  <th className="px-4 py-3 text-left font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Name" : "Нэр"}
-                  </th>
-                  <th className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "NAV" : "НАҮ"}
-                  </th>
-                  <th className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Change" : "Өөрчлөлт"}
-                  </th>
-                  <th className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "Change %" : "Өөрчлөлт %"}
-                  </th>
-                  <th className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>
-                    {language === "en" ? "AUM" : "Нийт хөрөнгө"}
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {fundsData.map((fund, idx) => {
-                  const isPositive = fund.changePercent > 0;
-                  return (
-                    <tr
-                      key={fund.symbol}
-                      onClick={() => onRowClick?.(fund.symbol, fund.name[language])}
-                      className="cursor-pointer transition-colors"
-                      style={{ backgroundColor: idx % 2 === 0 ? '#003166' : '#002952' }}
-                    >
-                      <td className="px-4 py-3 font-medium" style={{ color: '#60a5fa' }}>{fund.symbol}</td>
-                      <td className="px-4 py-3" style={{ color: '#ffffff' }}>{fund.name[language]}</td>
-                      <td className="px-4 py-3 text-right font-medium" style={{ color: '#ffffff' }}>{fund.nav.toLocaleString()}</td>
-                      <td className="px-4 py-3 text-right font-semibold" style={{ color: isPositive ? '#10b981' : '#ef4444' }}>
-                        <div className="flex items-center justify-end gap-1">
-                          {isPositive ? <TrendingUp className="h-3 w-3" /> : <TrendingDown className="h-3 w-3" />}
-                          {isPositive ? "+" : ""}{fund.change.toFixed(2)}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3 text-right font-semibold" style={{ color: isPositive ? '#10b981' : '#ef4444' }}>
-                        {isPositive ? "+" : ""}{fund.changePercent.toFixed(2)}%
-                      </td>
-                      <td className="px-4 py-3 text-right" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>{fund.aum}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
-    </section>
-  );
-}
+              <tbody 

@@ -1,68 +1,26 @@
-// src/app/App.tsx
-export default function App() {
-  const [language, setLanguage] = useState<Language>("en");
-  const [globalSearchQuery, setGlobalSearchQuery] = useState("");
-  const [selectedSecurity, setSelectedSecurity] = useState<{
-    symbol: string;
-    name: string;
-    category?: string;
-    maturityDate?: string;
-  } | null>(null);
+html,
+body,
+#root {
+  min-height: 100%;
+}
 
-  const handleLanguageToggle = () => {
-    setLanguage((prev) => (prev === "en" ? "mn" : "en"));
-  };
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: inherit;
+}
 
-  const handleSecuritySelect = (symbol: string, name: string, category?: string, maturityDate?: string) => {
-    setSelectedSecurity({ symbol, name, category, maturityDate });
-    const detailSection = document.getElementById("security-detail");
-    detailSection?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+* {
+  box-sizing: border-box;
+}
 
-  return (
-    <div className="min-h-screen bg-slate-50 text-slate-950">
-      <Header
-        language={language}
-        onLanguageToggle={handleLanguageToggle}
-        searchQuery={globalSearchQuery}
-        onSearchChange={setGlobalSearchQuery}
-      />
+table {
+  border-collapse: collapse;
+}
 
-      <main className="container mx-auto space-y-8 px-4 py-6">
-        <MarketOverview language={language} />
-        <IndexSection language={language} />
-        <TodaysTrade
-          language={language}
-          onRowClick={(symbol, name) => handleSecuritySelect(symbol, name, "Stock")}
-        />
-        <SecuritiesOverview language={language} />
-        <ListedCompanies
-          language={language}
-          onRowClick={(symbol, name) => handleSecuritySelect(symbol, name, "Listed Company")}
-        />
-        <CompanyMetrics language={language} />
-        <OtherSecurities
-          language={language}
-          onRowClick={(symbol, name, category) => handleSecuritySelect(symbol, name, category)}
-        />
-        <DisclosuresReports language={language} />
-
-        <section id="security-detail" className="scroll-mt-20 space-y-4">
-          <h2 className="text-2xl font-medium text-slate-900">
-            {language === "en" ? "Security Detail" : "Үнэт цаасны дэлгэрэнгүй"}
-          </h2>
-          <SecurityDetail
-            language={language}
-            symbol={selectedSecurity?.symbol || null}
-            name={selectedSecurity?.name || null}
-            category={selectedSecurity?.category}
-            maturityDate={selectedSecurity?.maturityDate}
-            onClose={() => setSelectedSecurity(null)}
-          />
-        </section>
-      </main>
-
-      <Footer language={language} />
-    </div>
-  );
+img,
+svg {
+  display: block;
+  max-width: 100%;
 }

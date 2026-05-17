@@ -40,7 +40,7 @@ export function TodaysTrade({ language, onRowClick }: TodaysTradeProps) {
     `flex-1 px-6 py-3 text-sm font-medium transition-colors ${
       active
         ? "border-b-2 border-blue-600 bg-blue-50 text-blue-700"
-        : "text-slate-500 hover:bg-slate-50"
+        : "text-slate-500 hover:bg-slate-50 hover:text-slate-700"
     }`;
 
   return (
@@ -119,4 +119,60 @@ export function TodaysTrade({ language, onRowClick }: TodaysTradeProps) {
                   <th className="px-4 py-3 text-right font-medium text-slate-500">{language === "en" ? "Volume" : "Эзлэхүүн"}</th>
                 </tr>
               </thead>
-              <tbody 
+              <tbody className="divide-y divide-slate-200">
+                {bondsData.map((bond, idx) => (
+                  <tr key={bond.symbol} className={idx % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+                    <td className="px-4 py-3 font-medium text-blue-700">{bond.symbol}</td>
+                    <td className="px-4 py-3 text-slate-900">{bond.name[language]}</td>
+                    <td className="px-4 py-3 text-right text-slate-900">{bond.price.toLocaleString()}</td>
+                    <td className="px-4 py-3 text-right text-emerald-600">{bond.yield}%</td>
+                    <td className="px-4 py-3 text-right text-slate-500">{bond.maturity}</td>
+                    <td className="px-4 py-3 text-right text-slate-500">{bond.volume.toLocaleString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {activeCategory === "funds" && (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-slate-50">
+                <tr className="border-b border-slate-200">
+                  <th className="px-4 py-3 text-left font-medium text-slate-500">Symbol</th>
+                  <th className="px-4 py-3 text-left font-medium text-slate-500">{language === "en" ? "Name" : "Нэр"}</th>
+                  <th className="px-4 py-3 text-right font-medium text-slate-500">NAV</th>
+                  <th className="px-4 py-3 text-right font-medium text-slate-500">{language === "en" ? "Change" : "Өөрчлөлт"}</th>
+                  <th className="px-4 py-3 text-right font-medium text-slate-500">{language === "en" ? "Change %" : "Өөрчлөлт %"}</th>
+                  <th className="px-4 py-3 text-right font-medium text-slate-500">AUM</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200">
+                {fundsData.map((fund, idx) => {
+                  const isPositive = fund.changePercent > 0;
+                  return (
+                    <tr key={fund.symbol} className={idx % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+                      <td className="px-4 py-3 font-medium text-blue-700">{fund.symbol}</td>
+                      <td className="px-4 py-3 text-slate-900">{fund.name[language]}</td>
+                      <td className="px-4 py-3 text-right text-slate-900">{fund.nav.toLocaleString()}</td>
+                      <td className={`px-4 py-3 text-right font-semibold ${isPositive ? "text-emerald-600" : "text-rose-600"}`}>
+                        {isPositive ? "+" : ""}{fund.change.toFixed(2)}
+                      </td>
+                      <td className={`px-4 py-3 text-right font-semibold ${isPositive ? "text-emerald-600" : "text-rose-600"}`}>
+                        {isPositive ? "+" : ""}{fund.changePercent.toFixed(2)}%
+                      </td>
+                      <td className="px-4 py-3 text-right text-slate-500">{fund.aum}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+export default TodaysTrade;

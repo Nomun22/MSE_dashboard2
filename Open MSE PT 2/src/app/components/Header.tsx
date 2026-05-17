@@ -1,8 +1,8 @@
-// src/app/components/Header.tsx
-import { Search, Globe, TrendingUp } from "lucide-react";
+import { Search, Globe } from "lucide-react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Language, t } from "../lib/translations";
+import mseLogo from "../../assets/mse-logo.jpg";
 
 interface HeaderProps {
   language: Language;
@@ -11,34 +11,25 @@ interface HeaderProps {
   onSearchChange: (query: string) => void;
 }
 
-function MseLogo() {
-  return (
-    <div className="flex items-center gap-3">
-      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0A4A8A] text-white shadow-sm">
-        <TrendingUp className="h-5 w-5" />
-      </div>
-      <div className="flex flex-col">
-        <span className="text-sm font-semibold uppercase tracking-[0.18em] text-[#0A4A8A]">
-          MSE
-        </span>
-        <span className="text-xs text-slate-500">
-          {language === "en" ? "Market Dashboard" : "Зах зээлийн хяналтын самбар"}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-export function Header({
-  language,
-  onLanguageToggle,
-  searchQuery,
-  onSearchChange,
-}: HeaderProps) {
+export function Header({ language, onLanguageToggle, searchQuery, onSearchChange }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85">
-      <div className="container mx-auto flex h-16 items-center gap-4 px-6">
-        <MseLogo />
+      <div className="container mx-auto flex h-20 items-center gap-4 px-6">
+        <div className="flex items-center gap-3">
+          <img
+            src={mseLogo}
+            alt="Mongolian Stock Exchange logo"
+            className="h-12 w-auto object-contain"
+          />
+          <div className="flex flex-col">
+            <h1 className="text-sm font-semibold leading-tight text-slate-900">
+              {language === "en" ? "MSE Dashboard" : "МҮХБ Хяналтын Самбар"}
+            </h1>
+            <p className="text-xs text-slate-500">
+              {t(language, "header.subtitle")}
+            </p>
+          </div>
+        </div>
 
         <div className="ml-auto flex items-center gap-3">
           <div className="relative w-80 max-w-[42vw]">

@@ -2,64 +2,66 @@
 
 :root {
   --font-size: 16px;
-  --background: #004187;
-  --foreground: #ffffff;
-  --card: #003166;
-  --card-foreground: #ffffff;
-  --popover: #003166;
-  --popover-foreground: #ffffff;
-  --primary: #60a5fa;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #0a4a8a;
   --primary-foreground: #ffffff;
-  --secondary: #002952;
-  --secondary-foreground: #ffffff;
-  --muted: #002952;
-  --muted-foreground: #ffffff; /* CHANGED from #9ca3af to WHITE */
-  --accent: #004187;
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
+  --secondary: #e2e8f0;
+  --secondary-foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #eff6ff;
+  --accent-foreground: #0f172a;
+  --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: transparent;
-  --input-background: #002952;
-  --switch-background: #004187;
+  --border: #e2e8f0;
+  --input: #ffffff;
+  --input-background: #ffffff;
+  --switch-background: #cbd5e1;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #60a5fa;
+  --ring: #93c5fd;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  --sidebar: #003166;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #60a5fa;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #0a4a8a;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #002952;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #60a5fa;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #93c5fd;
 }
 
 .dark {
-  --background: #004187;
-  --foreground: #ffffff;
-  --card: #003166;
-  --card-foreground: #ffffff;
-  --popover: #003166;
-  --popover-foreground: #ffffff;
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card: #111827;
+  --card-foreground: #f8fafc;
+  --popover: #111827;
+  --popover-foreground: #f8fafc;
   --primary: #60a5fa;
-  --primary-foreground: #ffffff;
-  --secondary: #002952;
-  --secondary-foreground: #ffffff;
-  --muted: #002952;
-  --muted-foreground: #ffffff; /* CHANGED from #9ca3af to WHITE */
-  --accent: #004187;
-  --accent-foreground: #ffffff;
+  --primary-foreground: #0f172a;
+  --secondary: #1e293b;
+  --secondary-foreground: #f8fafc;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #1d4ed8;
+  --accent-foreground: #f8fafc;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: #002952;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: #111827;
+  --input-background: #111827;
+  --switch-background: #334155;
   --ring: #60a5fa;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
@@ -68,13 +70,13 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: #003166;
-  --sidebar-foreground: #ffffff;
+  --sidebar: #111827;
+  --sidebar-foreground: #f8fafc;
   --sidebar-primary: #60a5fa;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #002952;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-primary-foreground: #0f172a;
+  --sidebar-accent: #1e293b;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: rgba(255, 255, 255, 0.12);
   --sidebar-ring: #60a5fa;
 }
 
@@ -124,112 +126,40 @@
     @apply border-border outline-ring/50;
   }
 
-  body {
-    @apply bg-background text-foreground;
-  }
-
-  /**
-  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
-  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
-  */
-
   html {
     font-size: var(--font-size);
   }
 
-  h1 {
-    font-size: var(--text-2xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-    color: #ffffff;
+  body {
+    @apply bg-background text-foreground;
   }
 
-  h2 {
-    font-size: var(--text-xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-    color: #ffffff;
+  h1, h2, h3, h4, label, button, input, p, span, td, th {
+    color: inherit;
   }
 
-  h3 {
-    font-size: var(--text-lg);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-    color: #ffffff;
+  table {
+    border-collapse: collapse;
   }
 
-  h4 {
-    font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-    color: #ffffff;
-  }
-
-  label {
-    font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-    color: #ffffff;
-  }
-
-  button {
-    font-size: var(--text-base);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-    color: #ffffff;
-  }
-
-  input {
-    font-size: var(--text-base);
-    font-weight: var(--font-weight-normal);
-    line-height: 1.5;
-    color: #ffffff;
-  }
-
-  /* TABLE STYLING - Make headers stand out */
   thead {
-    background-color: #001f3f !important;
+    background-color: #f8fafc;
   }
 
   thead th {
-    background-color: #001f3f !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
+    color: #64748b;
+    font-weight: 600;
   }
 
   tbody tr {
-    background-color: #003166 !important;
+    background-color: #ffffff;
   }
 
   tbody tr:nth-child(even) {
-    background-color: #002952 !important;
+    background-color: #f8fafc;
   }
 
   tbody tr:hover {
-    background-color: #004187 !important;
-  }
-
-  td, th {
-    color: #ffffff !important;
-  }
-
-  /* Special override for the gray bg class used in Company Metrics header */
-  .bg-\[\#f8f9fb\] {
-    background-color: #001f3f !important;
-  }
-
-  /* Make ticker symbols and company names bright white and bold */
-  .text-\[\#1a3a5c\] {
-    color: #ffffff !important;
-    font-weight: 700 !important;
-  }
-
-  /* Ensure all table text is white */
-  .text-muted-foreground {
-    color: #ffffff !important;
-  }
-
-  .text-foreground {
-    color: #ffffff !important;
+    background-color: #eff6ff;
   }
 }

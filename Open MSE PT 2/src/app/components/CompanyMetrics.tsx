@@ -445,8 +445,8 @@ export function CompanyMetrics({ language }: CompanyMetricsProps) {
     <section className="space-y-6">
       <div className="flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <h2 className="text-2xl font-medium text-white">{L.title}</h2>
-          <p className="text-sm text-blue-100">{L.note}</p>
+          <h2 className="text-2xl font-medium text-slate-900">{L.title}</h2>
+          <p className="text-sm text-slate-600">{L.note}</p>
         </div>
       </div>
 

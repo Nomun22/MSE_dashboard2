@@ -2,6 +2,7 @@ import { Search, Globe } from "lucide-react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Language, t } from "../lib/translations";
+import mseLogo from "../../assets/mse-logo.jpg";
 
 interface HeaderProps {
   language: Language;
@@ -16,14 +17,16 @@ export function Header({
   searchQuery,
   onSearchChange,
 }: HeaderProps) {
+  const nextLanguage = language === "en" ? "MN" : "EN";
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#004a99] text-white backdrop-blur">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#004a99] text-white shadow-sm">
       <div className="mx-auto flex h-20 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex min-w-0 items-center gap-3">
           <img
-            src="/src/assets/mse-logo.jpg"
+            src={mseLogo}
             alt="MSE logo"
-            className="h-11 w-11 rounded-md object-cover"
+            className="h-11 w-11 rounded-md object-cover ring-1 ring-white/10"
           />
           <div className="min-w-0">
             <h1 className="truncate text-lg font-semibold sm:text-xl">
@@ -45,7 +48,7 @@ export function Header({
               placeholder={t(language, "header.search")}
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="border-white/10 bg-[#003166] pl-9 text-white placeholder:text-blue-200"
+              className="border-white/10 bg-[#003b7a] pl-9 text-white placeholder:text-blue-200"
             />
           </div>
 
@@ -53,14 +56,16 @@ export function Header({
             variant="outline"
             size="sm"
             onClick={onLanguageToggle}
-            className="border-white/15 bg-[#003166] text-white hover:bg-[#0a3f7a]"
+            className="min-w-[72px] border-white/15 bg-[#003b7a] text-white hover:bg-[#0a3f7a]"
+            aria-label={`Switch language to ${nextLanguage}`}
           >
             <Globe className="mr-1.5 h-4 w-4" />
-            {language === "en" ? "MN" : "EN"}
+            {nextLanguage}
           </Button>
 
           <div className="hidden text-xs text-blue-100 sm:block">
-            {t(language, "header.lastUpdated")} <span className="font-semibold">2026-05-05</span>
+            {t(language, "header.lastUpdated")}{" "}
+            <span className="font-semibold">2026-05-05</span>
           </div>
         </div>
       </div>

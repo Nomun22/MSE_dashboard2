@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Language } from "../lib/translations";
 import { FileText, Calendar } from "lucide-react";
 
@@ -51,12 +52,62 @@ const meetingsData = [
   },
 ];
 
+const reportTypes = {
+  en: [
+    "All",
+    "Price sensitive disclosure",
+    "Trading disclosure",
+    "Board decision",
+    "Financial report",
+  ],
+  mn: [
+    "Бүгд",
+    "Үнэт цаасны мэдээлэл",
+    "Арилжааны мэдээлэл",
+    "Удирдах зөвлөлийн шийдвэр",
+    "Санхүүгийн тайлан",
+  ],
+};
+
 export function DisclosuresReports({ language }: DisclosuresReportsProps) {
+  const [activeFilter, setActiveFilter] = useState(
+    language === "en" ? "All" : "Бүгд"
+  );
+
+  const labels = language === "en" ? reportTypes.en : reportTypes.mn;
+
+  const filteredDisclosures =
+    activeFilter === (language === "en" ? "All" : "Бүгд")
+      ? disclosuresData
+      : disclosuresData.filter((item) => item.type[language] === activeFilter);
+
   return (
     <section className="space-y-6">
-      <h2 className="text-2xl font-medium text-slate-900">
-        {language === "en" ? "Disclosures & Reports" : "Мэдээлэл ба тайлан"}
-      </h2>
+      <div className="space-y-3">
+        <h2 className="text-2xl font-medium text-slate-900">
+          {language === "en" ? "Disclosures & Reports" : "Мэдээлэл ба тайлан"}
+        </h2>
+
+        <div className="flex flex-wrap gap-2">
+          {labels.map((label) => {
+            const active = activeFilter === label;
+
+            return (
+              <button
+                key={label}
+                onClick={() => setActiveFilter(label)}
+                className={
+                  active
+                    ? "rounded-full border border-[#1a56a3] bg-[#1a56a3] px-4 py-2 text-sm font-medium text-white"
+                    : "rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-[#1a56a3] hover:text-[#1a56a3]"
+                }
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
@@ -66,20 +117,30 @@ export function DisclosuresReports({ language }: DisclosuresReportsProps) {
               {language === "en" ? "Latest Disclosures" : "Сүүлийн мэдээллүүд"}
             </h3>
           </div>
-          <div className="divide-y divide-slate-200">
-            {disclosuresData.map((item, index) => (
-              <div key={index} className={index % 2 === 0 ? "bg-white p-4" : "bg-slate-50 p-4"}>
-                <div className="mb-2 flex items-start justify-between gap-4">
+
+          <div className="divide-y divide-slate-100">
+            {filteredDisclosures.map((item, index) => (
+              <div key={index} className="bg-white p-4 transition-colors hover:bg-slate-50">
+                <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <div className="mb-1 text-sm font-medium text-blue-700">{item.company[language]}</div>
-                    <div className="mb-2 text-sm text-slate-900">{item.title[language]}</div>
-                    <div className="flex items-center gap-4 text-xs text-slate-500">
-                      <span className="rounded bg-blue-50 px-2 py-1 text-blue-700">{item.type[language]}</span>
+                    <div className="mb-1 text-sm font-semibold text-[#1a56a3]">
+                      {item.company[language]}
+                    </div>
+                    <div className="mb-2 text-sm text-slate-900">
+                      {item.title[language]}
+                    </div>
+                    <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+                      <span className="rounded-full bg-blue-50 px-2.5 py-1 text-blue-700">
+                        {item.type[language]}
+                      </span>
                       <span>{item.date}</span>
                     </div>
                   </div>
+
                   {item.amount && (
-                    <div className="text-sm font-semibold text-emerald-600">{item.amount}</div>
+                    <div className="text-sm font-semibold text-emerald-600">
+                      {item.amount}
+                    </div>
                   )}
                 </div>
               </div>
@@ -94,14 +155,21 @@ export function DisclosuresReports({ language }: DisclosuresReportsProps) {
               {language === "en" ? "Upcoming Meetings" : "Удирдах зөвлөлийн хурлууд"}
             </h3>
           </div>
-          <div className="divide-y divide-slate-200">
+
+          <div className="divide-y divide-slate-100">
             {meetingsData.map((item, index) => (
-              <div key={index} className={index % 2 === 0 ? "bg-white p-4" : "bg-slate-50 p-4"}>
-                <div className="mb-2">
-                  <div className="mb-1 text-sm font-medium text-orange-600">{item.company[language]}</div>
-                  <div className="mb-2 text-sm text-slate-900">{item.topic[language]}</div>
-                  <div className="flex items-center gap-4 text-xs text-slate-500">
-                    <span className="rounded bg-violet-50 px-2 py-1 text-violet-700">{item.type[language]}</span>
+              <div key={index} className="bg-white p-4 transition-colors hover:bg-slate-50">
+                <div>
+                  <div className="mb-1 text-sm font-semibold text-orange-600">
+                    {item.company[language]}
+                  </div>
+                  <div className="mb-2 text-sm text-slate-900">
+                    {item.topic[language]}
+                  </div>
+                  <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+                    <span className="rounded-full bg-violet-50 px-2.5 py-1 text-violet-700">
+                      {item.type[language]}
+                    </span>
                     <span>{item.date}</span>
                   </div>
                 </div>

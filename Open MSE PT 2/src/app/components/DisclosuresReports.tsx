@@ -54,33 +54,32 @@ const meetingsData = [
 export function DisclosuresReports({ language }: DisclosuresReportsProps) {
   return (
     <section className="space-y-6">
-      <h2 className="text-2xl font-medium text-white">
+      <h2 className="text-2xl font-medium text-slate-900">
         {language === "en" ? "Disclosures & Reports" : "Мэдээлэл ба тайлан"}
       </h2>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        {/* Latest Disclosures */}
-        <div className="overflow-hidden rounded-lg border border-border" style={{ backgroundColor: '#003166' }}>
-          <div className="border-b border-border px-6 py-4" style={{ backgroundColor: '#003166' }}>
-            <h3 className="flex items-center gap-2 font-medium text-white">
-              <FileText className="h-5 w-5" style={{ color: '#60a5fa' }} />
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          <div className="border-b border-slate-200 px-6 py-4">
+            <h3 className="flex items-center gap-2 font-medium text-slate-900">
+              <FileText className="h-5 w-5 text-blue-600" />
               {language === "en" ? "Latest Disclosures" : "Сүүлийн мэдээллүүд"}
             </h3>
           </div>
-          <div className="divide-y divide-border">
+          <div className="divide-y divide-slate-200">
             {disclosuresData.map((item, index) => (
-              <div key={index} className="p-4 transition-colors" style={{ backgroundColor: index % 2 === 0 ? '#003166' : '#002952' }}>
+              <div key={index} className={index % 2 === 0 ? "bg-white p-4" : "bg-slate-50 p-4"}>
                 <div className="mb-2 flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <div className="mb-1 text-sm font-medium" style={{ color: '#60a5fa' }}>{item.company[language]}</div>
-                    <div className="mb-2 text-sm text-white">{item.title[language]}</div>
-                    <div className="flex items-center gap-4 text-xs text-white/70">
-                      <span className="rounded px-2 py-1" style={{ backgroundColor: '#004187', color: '#60a5fa' }}>{item.type[language]}</span>
+                    <div className="mb-1 text-sm font-medium text-blue-700">{item.company[language]}</div>
+                    <div className="mb-2 text-sm text-slate-900">{item.title[language]}</div>
+                    <div className="flex items-center gap-4 text-xs text-slate-500">
+                      <span className="rounded bg-blue-50 px-2 py-1 text-blue-700">{item.type[language]}</span>
                       <span>{item.date}</span>
                     </div>
                   </div>
                   {item.amount && (
-                    <div className="text-sm font-semibold" style={{ color: '#10b981' }}>{item.amount}</div>
+                    <div className="text-sm font-semibold text-emerald-600">{item.amount}</div>
                   )}
                 </div>
               </div>
@@ -88,22 +87,21 @@ export function DisclosuresReports({ language }: DisclosuresReportsProps) {
           </div>
         </div>
 
-        {/* Upcoming Meetings */}
-        <div className="overflow-hidden rounded-lg border border-border" style={{ backgroundColor: '#003166' }}>
-          <div className="border-b border-border px-6 py-4" style={{ backgroundColor: '#003166' }}>
-            <h3 className="flex items-center gap-2 font-medium text-white">
-              <Calendar className="h-5 w-5" style={{ color: '#f97316' }} />
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          <div className="border-b border-slate-200 px-6 py-4">
+            <h3 className="flex items-center gap-2 font-medium text-slate-900">
+              <Calendar className="h-5 w-5 text-orange-500" />
               {language === "en" ? "Upcoming Meetings" : "Удирдах зөвлөлийн хурлууд"}
             </h3>
           </div>
-          <div className="divide-y divide-border">
+          <div className="divide-y divide-slate-200">
             {meetingsData.map((item, index) => (
-              <div key={index} className="p-4 transition-colors" style={{ backgroundColor: index % 2 === 0 ? '#003166' : '#002952' }}>
+              <div key={index} className={index % 2 === 0 ? "bg-white p-4" : "bg-slate-50 p-4"}>
                 <div className="mb-2">
-                  <div className="mb-1 text-sm font-medium" style={{ color: '#f97316' }}>{item.company[language]}</div>
-                  <div className="mb-2 text-sm text-white">{item.topic[language]}</div>
-                  <div className="flex items-center gap-4 text-xs text-white/70">
-                    <span className="rounded px-2 py-1" style={{ backgroundColor: '#7c3aed', color: '#e9d5ff' }}>{item.type[language]}</span>
+                  <div className="mb-1 text-sm font-medium text-orange-600">{item.company[language]}</div>
+                  <div className="mb-2 text-sm text-slate-900">{item.topic[language]}</div>
+                  <div className="flex items-center gap-4 text-xs text-slate-500">
+                    <span className="rounded bg-violet-50 px-2 py-1 text-violet-700">{item.type[language]}</span>
                     <span>{item.date}</span>
                   </div>
                 </div>

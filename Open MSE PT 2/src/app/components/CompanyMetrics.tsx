@@ -548,7 +548,7 @@ export function CompanyMetrics({ language }: CompanyMetricsProps) {
           </div>
 
           <div className="overflow-x-auto [scrollbar-width:thin] [scrollbar-color:theme(colors.border)_transparent] hover:[scrollbar-color:theme(colors.muted-foreground/40)_transparent]">
-            <table className="w-full min-w-[1450px] border-collapse text-sm">
+            <table className="w-full min-w-[1180px] border-collapse text-sm">
               <thead>
                 <tr className="sticky top-0 z-10 border-b border-slate-200 bg-[#f8f9fb] text-xs text-slate-500">
                   {columns.map((col) => (

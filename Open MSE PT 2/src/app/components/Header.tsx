@@ -30,7 +30,7 @@ export function Header({
           />
           <div className="min-w-0">
             <h1 className="truncate text-lg font-semibold sm:text-xl">
-              MSE Securities
+              MSE SECURITIES
             </h1>
             <p className="truncate text-xs text-blue-100">
               {language === "en"
